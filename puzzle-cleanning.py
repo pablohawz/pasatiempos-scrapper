@@ -1,5 +1,5 @@
+# %%
 import pandas as pd
-
 
 def split1(x):
 
@@ -34,9 +34,26 @@ def split2(x):
     return s
 
 
+
+# %%
 df = pd.read_csv('refranes.csv')
+df['refran_completo'] = df['Refran'].apply(lambda x: x.replace('"', ''))
 df['refran_completo'] = df['Refran'].apply(lambda x: x.replace('"', ''))
 
 df['parte_1'] = df['refran_completo'].apply(split1)
 df['parte_2'] = df['refran_completo'].apply(split2)
+
+
+# %%
+df.to_csv('refranes_cleaned.csv', index=False)
+
+
+# %%
+from IPython.display import display
+display(df)
+
+
+# %%
+
+
 
